@@ -1,0 +1,26 @@
+.button {
+  padding: 10px 25px;
+  align-self: flex-start;
+  font-size: 2rem;
+  border: 1px solid;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button--primary {
+  background-color: var(--color-primary-500);
+  border-color: var(--color-primary-500);
+  color: var(--color-secondary-100);
+}
+
+.button--secondary {
+  background-color: var(--color-secondary-300);
+  border-color: var(--color-secondary-300);
+  color: var(--color-primary-500);
+}
+
+.button--outline {
+  background-color: var(--color-secondary-100);
+  border-color: var(--color-primary-500);
+  color: var(--color-primary-500);
+}

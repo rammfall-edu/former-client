@@ -1,0 +1,16 @@
+.header {
+  background-color: var(--color-primary-100);
+  padding: 40px;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+

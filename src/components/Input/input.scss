@@ -1,0 +1,35 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.input__label {
+  font-size: 2rem;
+}
+
+.input__input {
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 2.4rem;
+  border: 2px solid;
+}
+
+.input__input--error {
+  border-color: var(--color-accent-500);
+}
+
+.input__message {
+  color: var(--color-accent-500);
+  font-size: 1.6rem;
+}
+
+.input__button {
+  position: absolute;
+  top: 32px;
+  right: 0;
+  border: none;
+  background-color: transparent;
+  font-size: 3.6rem;
+  cursor: pointer;
+}
