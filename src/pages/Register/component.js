@@ -1,14 +1,17 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 import Input from '../../components/Input';
 import './register.scss';
 import Button from '../../components/Button';
 import { registerUser } from '../../api';
-import { VALIDATIONS } from '../../constants';
+import { ROUTES, VALIDATIONS } from '../../constants';
 
 const Register = () => {
+  const navigate = useNavigate();
+
   return (
     <Formik
       initialValues={{ email: '', username: '', password: '' }}
@@ -21,6 +24,7 @@ const Register = () => {
 
         try {
           await registerUser(body);
+          navigate(ROUTES.LOGIN);
         } catch (error) {
           setFieldError(error.description.name, error.description.info);
         }

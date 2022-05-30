@@ -4,8 +4,17 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import './button.scss';
+import Spinner from '../Spinner';
 
-const Button = ({ children, type, kind, href, buttonType }) => {
+const Button = ({
+  children,
+  type,
+  kind,
+  href,
+  buttonType,
+  onClick,
+  isLoading,
+}) => {
   const className = classNames('button', {
     'button--primary': type === 'primary',
     'button--secondary': type === 'secondary',
@@ -14,15 +23,20 @@ const Button = ({ children, type, kind, href, buttonType }) => {
 
   if (kind === 'button') {
     return (
-      <button type={buttonType} className={className}>
-        {children}
+      <button
+        disabled={isLoading}
+        onClick={onClick}
+        type={buttonType}
+        className={className}
+      >
+        {isLoading ? <Spinner /> : children}
       </button>
     );
   }
 
   return (
     <Link className={className} to={href}>
-      {children}
+      {isLoading ? <Spinner /> : children}
     </Link>
   );
 };
@@ -33,6 +47,8 @@ Button.propTypes = {
   kind: PropTypes.oneOf(['button', 'link']),
   buttonType: PropTypes.oneOf(['submit', 'button']),
   href: PropTypes.string,
+  onClick: PropTypes.func,
+  isLoading: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -40,6 +56,8 @@ Button.defaultProps = {
   kind: 'button',
   buttonType: 'submit',
   href: null,
+  onClick: () => {},
+  isLoading: false,
 };
 
 export default Button;

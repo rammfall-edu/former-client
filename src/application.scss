@@ -1,3 +1,10 @@
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 :root {
   --color-primary-100: #4C4B67;
   --color-primary-300: #42406F;
@@ -14,10 +21,15 @@
   --color-accent-500: #b21b2f;
   --color-accent-700: #5D101B;
   --color-accent-900: #140103;
+  --color-accent-success-100: #70B45A;
 }
 
 body,
 html {
   font-size: 10px;
   font-family: Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
 }

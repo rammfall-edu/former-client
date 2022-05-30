@@ -1,14 +1,17 @@
 import React from 'react';
+import * as yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './login.scss';
 import { loginUser } from '../../api';
-import * as yup from 'yup';
-import { VALIDATIONS } from '../../constants';
+import { ROUTES, VALIDATIONS } from '../../constants';
 import { Field, Form, Formik } from 'formik';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-const Login = () => {
+const Login = ({ setAuthInfo }) => {
+  const navigate = useNavigate();
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
@@ -20,7 +23,9 @@ const Login = () => {
         });
 
         try {
-          await loginUser(body);
+          const info = await loginUser(body);
+          setAuthInfo(info);
+          navigate(ROUTES.DASHBOARD);
         } catch (error) {
           setFieldError(error.description.name, error.description.info);
         }
@@ -60,6 +65,10 @@ const Login = () => {
       </Form>
     </Formik>
   );
+};
+
+Login.propTypes = {
+  setAuthInfo: PropTypes.func.isRequired,
 };
 
 export default Login;

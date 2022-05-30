@@ -1,0 +1,26 @@
+.account {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 40px;
+}
+
+.account__title {
+  font-size: 4rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.account__subtitle {
+  font-size: 3rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.account__message {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--color-accent-success-100);
+  color: var(--color-secondary-100);
+  font-size: 2.4rem;
+}
