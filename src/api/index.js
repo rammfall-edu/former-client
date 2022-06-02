@@ -1,7 +1,7 @@
 import { HOSTNAME } from '../constants';
 
 const request = async (url, method = 'GET', body = null) => {
-  const storage = JSON.parse(localStorage.info || {});
+  const storage = JSON.parse(localStorage.info || '{}');
   const headers = {};
 
   if (storage.token) {

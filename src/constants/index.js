@@ -1,4 +1,4 @@
-export const HOSTNAME = 'http://localhost:3000';
+export const HOSTNAME = 'http://localhost:3004';
 
 export const ROUTES = {
   LOGIN: '/login',

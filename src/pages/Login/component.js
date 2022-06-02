@@ -1,7 +1,7 @@
 import React from 'react';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 
 import './login.scss';
 import { loginUser } from '../../api';
@@ -9,9 +9,11 @@ import { ROUTES, VALIDATIONS } from '../../constants';
 import { Field, Form, Formik } from 'formik';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import { successLogin } from '../../store/user/actions';
 
-const Login = ({ setAuthInfo }) => {
+const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
@@ -24,7 +26,7 @@ const Login = ({ setAuthInfo }) => {
 
         try {
           const info = await loginUser(body);
-          setAuthInfo(info);
+          dispatch(successLogin(info));
           navigate(ROUTES.DASHBOARD);
         } catch (error) {
           setFieldError(error.description.name, error.description.info);
@@ -65,10 +67,6 @@ const Login = ({ setAuthInfo }) => {
       </Form>
     </Formik>
   );
-};
-
-Login.propTypes = {
-  setAuthInfo: PropTypes.func.isRequired,
 };
 
 export default Login;

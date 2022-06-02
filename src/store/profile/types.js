@@ -1,0 +1,2 @@
+export const FILL_PROFILE = 'FILL_PROFILE';
+export const LOADING_PROFILE = 'LOADING_PROFILE';

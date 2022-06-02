@@ -6,17 +6,22 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { createUpdateProfile, getProfile } from '../../api';
 import { VALIDATIONS } from '../../constants';
+import { useDispatch, useSelector } from 'react-redux';
+import { isLoadingProfile } from '../../store/profile/selectors';
+import { fillProfile, loadingProfile } from '../../store/profile/actions';
 
 const Profile = () => {
-  const [profile, setProfile] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+  const isLoading = useSelector(isLoadingProfile);
+  const profile = useSelector(getProfile);
+  console.log(profile);
 
   useEffect(() => {
     getProfile().then((profile) => {
-      setProfile('firstName' in profile ? profile : null);
-      setIsLoading(false);
+      dispatch(fillProfile('firstName' in profile ? profile : {}));
+      dispatch(loadingProfile(false));
     });
-  }, [setProfile, getProfile]);
+  }, [dispatch, fillProfile, loadingProfile]);
 
   return (
     <Formik
@@ -56,7 +61,7 @@ const Profile = () => {
           body,
           profile ? 'PUT' : 'POST'
         );
-        setProfile(profileInfo);
+        dispatch(fillProfile(profileInfo));
       }}
     >
       <Form>
