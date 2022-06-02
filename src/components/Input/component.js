@@ -25,6 +25,7 @@ const Input = ({
         {required && ' *'}
       </span>
       <input
+        checked={type === 'checkbox' ? value : null}
         name={name}
         value={value}
         onChange={onChange}

@@ -51,7 +51,11 @@ const Application = () => {
         />
         <Route
           element={
-            authInfo.token ? <Account /> : <Navigate to={ROUTES.LOGIN} />
+            authInfo.token ? (
+              <Account email={authInfo.email} />
+            ) : (
+              <Navigate to={ROUTES.LOGIN} />
+            )
           }
           path={ROUTES.ACCOUNT}
         />

@@ -1,8 +1,9 @@
 import { HOSTNAME } from '../constants';
 
 const request = async (url, method = 'GET', body = null) => {
-  const storage = JSON.parse(localStorage.info || {});
+  const storage = JSON.parse(localStorage.info || '{}');
   const headers = {};
+  console.log(storage);
 
   if (storage.token) {
     headers.authorization = storage.token;
@@ -14,6 +15,12 @@ const request = async (url, method = 'GET', body = null) => {
     headers,
   });
   const data = await result.json();
+
+  if (!result.ok && data.info === 'not correct token') {
+    delete localStorage.info;
+    window.location.reload();
+    return;
+  }
 
   if (!result.ok) {
     const error = new Error(data);
@@ -42,4 +49,16 @@ export const createUpdateProfile = async (body, method) => {
 
 export const updatePassword = async (body) => {
   return await request('/account/password', 'PUT', body);
+};
+
+export const updateEmail = async (body) => {
+  return await request('/account/email', 'PUT', body);
+};
+
+export const createForm = async (body) => {
+  return await request('/form', 'POST', body);
+};
+
+export const getForms = async () => {
+  return await request('/form');
 };

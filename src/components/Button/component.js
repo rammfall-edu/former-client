@@ -14,11 +14,13 @@ const Button = ({
   buttonType,
   onClick,
   isLoading,
+  size,
 }) => {
-  const className = classNames('button', {
+  const className = classNames('button', `button--${size}`, {
     'button--primary': type === 'primary',
     'button--secondary': type === 'secondary',
     'button--outline': type === 'outline',
+    'button--accent': type === 'accent',
   });
 
   if (kind === 'button') {
@@ -43,12 +45,13 @@ const Button = ({
 
 Button.propTypes = {
   children: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['primary', 'secondary', 'outline']),
+  type: PropTypes.oneOf(['primary', 'secondary', 'outline', 'accent']),
   kind: PropTypes.oneOf(['button', 'link']),
   buttonType: PropTypes.oneOf(['submit', 'button']),
   href: PropTypes.string,
   onClick: PropTypes.func,
   isLoading: PropTypes.bool,
+  size: PropTypes.oneOf(['lg', 'md', 'sm']),
 };
 
 Button.defaultProps = {
@@ -58,6 +61,7 @@ Button.defaultProps = {
   href: null,
   onClick: () => {},
   isLoading: false,
+  size: 'lg',
 };
 
 export default Button;

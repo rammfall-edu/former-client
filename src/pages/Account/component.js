@@ -6,10 +6,11 @@ import './account.scss';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { VALIDATIONS } from '../../constants';
-import { updatePassword } from '../../api';
+import { updateEmail, updatePassword } from '../../api';
 
-const Account = () => {
+const Account = ({ email }) => {
   const [message, setMessage] = useState(null);
+  const [emailMessage, setEmailMessage] = useState(null);
 
   return (
     <div className="account">
@@ -88,6 +89,54 @@ const Account = () => {
                   component={Input}
                 />
                 <Button>Change password</Button>
+              </div>
+            </Form>
+          </Formik>
+        </li>
+        <li className="account__item">
+          <Formik
+            initialValues={{
+              email,
+            }}
+            onSubmit={async (values, { resetForm, setFieldError }) => {
+              const body = new FormData();
+
+              Object.entries(values).forEach((item) => {
+                body.append(item[0], item[1]);
+              });
+
+              try {
+                const { info } = await updateEmail(body);
+                setEmailMessage(info);
+                setTimeout(() => setEmailMessage(null), 5000);
+              } catch (error) {
+                setFieldError(error.description.name, error.description.info);
+              }
+            }}
+            validationSchema={yup.object().shape({
+              email: yup
+                .string()
+                .label('Email')
+                .min(VALIDATIONS.email.min)
+                .max(VALIDATIONS.email.max)
+                .email()
+                .required(),
+            })}
+          >
+            <Form>
+              <div className="form">
+                <h2 className="account__subtitle">Change email</h2>
+                {emailMessage && (
+                  <div className="account__message">{emailMessage}</div>
+                )}
+                <Field
+                  name="email"
+                  label="Email"
+                  required
+                  type="email"
+                  component={Input}
+                />
+                <Button>Change Email</Button>
               </div>
             </Form>
           </Formik>

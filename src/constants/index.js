@@ -33,4 +33,8 @@ export const VALIDATIONS = {
     min: 7,
     max: 20,
   },
+  formTitle: {
+    min: 8,
+    max: 40,
+  },
 };
