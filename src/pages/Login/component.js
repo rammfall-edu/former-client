@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -10,8 +10,13 @@ import { Field, Form, Formik } from 'formik';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-const Login = ({ setAuthInfo }) => {
+const Login = ({ setAuthInfo, authInfo }) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate(ROUTES.DASHBOARD);
+  }, [authInfo]);
+
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
@@ -24,8 +29,7 @@ const Login = ({ setAuthInfo }) => {
 
         try {
           const info = await loginUser(body);
-          setAuthInfo(info);
-          navigate(ROUTES.DASHBOARD);
+          await setAuthInfo(info);
         } catch (error) {
           setFieldError(error.description.name, error.description.info);
         }

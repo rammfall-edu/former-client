@@ -45,6 +45,10 @@
 .forms__title {
   flex-grow: 1;
   font-size: 2rem;
+
+  a {
+    color: inherit;
+  }
 }
 
 .forms__btns {
@@ -56,4 +60,9 @@
 .dashboard__loader {
   display: flex;
   justify-content: center;
+}
+
+.forms__empty {
+  text-align: center;
+  font-size: 3rem;
 }

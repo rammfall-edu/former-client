@@ -6,6 +6,7 @@ export const ROUTES = {
   DASHBOARD: '/',
   PROFILE: '/profile',
   ACCOUNT: '/account',
+  FORM: '/form',
 };
 
 export const VALIDATIONS = {

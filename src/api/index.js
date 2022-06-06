@@ -3,7 +3,6 @@ import { HOSTNAME } from '../constants';
 const request = async (url, method = 'GET', body = null) => {
   const storage = JSON.parse(localStorage.info || '{}');
   const headers = {};
-  console.log(storage);
 
   if (storage.token) {
     headers.authorization = storage.token;
@@ -61,4 +60,16 @@ export const createForm = async (body) => {
 
 export const getForms = async () => {
   return await request('/form');
+};
+
+export const updateForm = async (id, body) => {
+  return await request(`/form/${id}`, 'PUT', body);
+};
+
+export const deleteForm = async (id) => {
+  return await request(`/form/${id}`, 'DELETE');
+};
+
+export const getForm = async (id) => {
+  return await request(`/form/${id}`);
 };

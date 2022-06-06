@@ -8,6 +8,8 @@ import { ROUTES } from './constants';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Account from './pages/Account';
+import Modal from './components/Modal';
+import FormDetails from './pages/FormDetails';
 
 const Application = () => {
   const localStorageInfo = localStorage.info || '{}';
@@ -32,7 +34,7 @@ const Application = () => {
             authInfo.token ? (
               <Navigate to={ROUTES.DASHBOARD} />
             ) : (
-              <Login setAuthInfo={setAuthInfo} />
+              <Login setAuthInfo={setAuthInfo} authInfo={authInfo} />
             )
           }
           path={ROUTES.LOGIN}
@@ -58,6 +60,12 @@ const Application = () => {
             )
           }
           path={ROUTES.ACCOUNT}
+        />
+        <Route
+          element={
+            authInfo.token ? <FormDetails /> : <Navigate to={ROUTES.LOGIN} />
+          }
+          path={`${ROUTES.FORM}/:id`}
         />
       </Routes>
     </div>
