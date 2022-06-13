@@ -14,14 +14,20 @@ const Button = ({
   buttonType,
   onClick,
   isLoading,
+  additionalClassName,
   size,
 }) => {
-  const className = classNames('button', `button--${size}`, {
-    'button--primary': type === 'primary',
-    'button--secondary': type === 'secondary',
-    'button--outline': type === 'outline',
-    'button--accent': type === 'accent',
-  });
+  const className = classNames(
+    'button',
+    additionalClassName,
+    `button--${size}`,
+    {
+      'button--primary': type === 'primary',
+      'button--secondary': type === 'secondary',
+      'button--outline': type === 'outline',
+      'button--accent': type === 'accent',
+    }
+  );
 
   if (kind === 'button') {
     return (
@@ -52,6 +58,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   isLoading: PropTypes.bool,
   size: PropTypes.oneOf(['lg', 'md', 'sm']),
+  additionalClassName: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -62,6 +69,7 @@ Button.defaultProps = {
   onClick: () => {},
   isLoading: false,
   size: 'lg',
+  additionalClassName: '',
 };
 
 export default Button;

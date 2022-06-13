@@ -73,3 +73,7 @@ export const deleteForm = async (id) => {
 export const getForm = async (id) => {
   return await request(`/form/${id}`);
 };
+
+export const createFields = async (id, body) => {
+  return await request(`/form/${id}`, 'POST', body);
+};

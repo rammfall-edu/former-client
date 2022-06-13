@@ -39,3 +39,26 @@ export const VALIDATIONS = {
     max: 40,
   },
 };
+
+export const FIELDS_TYPES = [
+  {
+    label: 'Text',
+    value: 'text',
+  },
+  {
+    label: 'Textarea',
+    value: 'textarea',
+  },
+  {
+    label: 'Select',
+    value: 'select',
+  },
+  {
+    label: 'Radio',
+    value: 'radio',
+  },
+  {
+    label: 'Checkbox',
+    value: 'checkbox',
+  },
+];
